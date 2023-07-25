@@ -26,6 +26,25 @@ num2 = int(input("Introduce el segundo número: "))
 num_rom_2 = (convertir_a_romano(num2))
 print ("El numero introducido equivale a ", num_rom_2, "en romano.")
 
+def romano_a_entero(romano):
+
+    digitos_romanos = ["I", "V", "X", "L", "C", "D", "M"]
+
+    if not isinstance (romano, str):
+        return "Error: Tiene que ser un número romano en formato cadena de texto"
+
+    for letra in romano:
+        if letra not in digitos_romanos:
+            return f"Error: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)"
+    
+    return "Todo: devolver el resultado"
+
+pruebas = ["A", "", 3, ["X", "X", "I"], "I", "MCXXIII"]
+for valor in pruebas:
+    print(romano_a_entero(valor))
+
+
+
 
 
 
