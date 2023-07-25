@@ -55,6 +55,9 @@ def romano_a_entero(romano):
         actual = digitos_romanos [letra]
         
         if anterior < actual:
+            # Si el numero se 
+            if anterior > 0 and len (str(actual)) - len (str(anterior)) > 1:
+                return f"ERROR: Resta no posible ({anterior} - {actual})"
             #deshace la suma de la anterior condicion
             resultado = resultado - anterior
             resultado = resultado + (actual - anterior)
