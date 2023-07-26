@@ -1,3 +1,5 @@
+import re
+
 def convertir_a_romano(numero):
 
     if type(numero) != int:
@@ -19,12 +21,12 @@ def convertir_a_romano(numero):
     return resultado
 
 
-num1 = int(input("Introduce el primer número: "))
+"""num1 = int(input("Introduce el primer número: "))
 num_rom_1 = (convertir_a_romano(num1))
 print ("El numero introducido equivale a ", num_rom_1, "en romano.")
 num2 = int(input("Introduce el segundo número: "))
 num_rom_2 = (convertir_a_romano(num2))
-print ("El numero introducido equivale a ", num_rom_2, "en romano.")
+print ("El numero introducido equivale a ", num_rom_2, "en romano.")"""
 
 def romano_a_entero(romano):
 
@@ -42,18 +44,22 @@ def romano_a_entero(romano):
 
     if not isinstance (romano, str):
         return "Error: Tiene que ser un número romano en formato cadena de texto"
-    
+
     resultado = 0
     anterior = 0
 
-    for letra in romano:
+    for letra in romano:  
         if letra not in digitos_romanos:
             return f"Error: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)"
         #i = digitos_romanos.index(letra)
         #resultado = resultado + valores [i]
         #resultado = resultado + digitos_romanos[letra]
+
+        patron = r"(.)\1{3,}"
+        if re.search(patron, romano):
+            return "Error: Un número romano no puede contener 3 letras seguidas iguales ({patron})"
+
         actual = digitos_romanos [letra]
-        
         if anterior < actual:
             # Si el numero se 
             if anterior > 0 and len (str(actual)) - len (str(anterior)) > 1:
@@ -67,7 +73,7 @@ def romano_a_entero(romano):
         
     return resultado
 
-pruebas = ["A", "", 3, ["X", "X", "I"], "I", "MCXXIII", "IV", "XIV", "XM"]
+pruebas = ["A", "", 3, ["X", "X"], "I", "MCXXIII", "IV", "XIV", "XM", "MMMMX", "MCXXX"]
 for valor in pruebas:
     print(romano_a_entero(valor))
 
