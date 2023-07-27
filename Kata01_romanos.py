@@ -51,6 +51,7 @@ def romano_a_entero(romano):
     for letra in romano:  
         if letra not in digitos_romanos:
             raise ValueError (f"Error: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)")
+            # Estas excepciones en realidad son para los programadores. No la ven los usuarios
 
         patron = r"(.)\1{3,}"
         if re.search(patron, romano):
@@ -76,7 +77,14 @@ def romano_a_entero(romano):
         
     return resultado
 
-pruebas = ["A", "", 3, ["X", "X"], "I", "MCXXIII", "IV", "XIV", "XM", "MMMMX", "MCXXX", "VX", "LC"]
+# Podemos hacer las pruebas de forma automática, le decimos a python que voy a 
+# hacer un pgrama que prueba mi programa. De tal forma que si rompo mi programa, 
+# al lanzar la bateria de prueba me avise de forma directa.
+# Las pruebas las quitamos y nos abrimos un fichero nuevo que sea test_romanos
+# le decimos que traspase este programa allí
+
+
+"""pruebas = ["A", "", 3, ["X", "X"], "I", "MCXXIII", "IV", "XIV", "XM", "MMMMX", "MCXXX", "VX", "LC"]
 for valor in pruebas:
     try:
         print(romano_a_entero(valor))
@@ -89,7 +97,7 @@ for valor in pruebas:
         # Le ayudamos a que no se rompa el programa con las excepciones y pueda continuar, simplemente haciendo un 
         # try y except con las pruebas, si además le metemos en except (Exception as ex) que nos printe la excepcion , 
         # nos dice el error por el que no funciona. Incluso podemos hacer una excepcion con un print diferente según 
-        # el tipo de error. 
+        # el tipo de error. """
 
 
 
