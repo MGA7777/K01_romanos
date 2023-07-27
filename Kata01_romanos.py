@@ -46,6 +46,8 @@ def romano_a_entero(romano):
 
     resultado = 0
     anterior = 0
+    super_anterior = 0
+
     # letra_igual = 0 Forma fácil de encontrar 3 letras seguidas. Irá con todo lo que esta entre 59-64
 
     for letra in romano:  
@@ -68,11 +70,17 @@ def romano_a_entero(romano):
             # Si el anterior es 2 unidades más pequeño, no se debe restar
             if anterior > 0 and len (str(actual)) - len (str(anterior)) > 1:
                 raise ValueError (f"ERROR: Resta no posible ({anterior} - {actual})")
+            
+            if anterior > 0 and actual > super_anterior > 0:
+                raise ValueError (f"Error: 2 restas consecutivas")
             # Deshace la suma de la anterior condicion
             resultado = resultado - anterior
             resultado = resultado + (actual - anterior)
+ 
         else:
             resultado = resultado + actual
+
+        super_anterior = anterior
         anterior = actual
         
     return resultado

@@ -28,6 +28,14 @@ class RomanosTest(unittest.TestCase):
     def test_no_3letras_seguidas(self):
         self.assertRaises(ValueError, romano_a_entero, "MMMM")
         self.assertRaises(ValueError, romano_a_entero, "MIIII")
-        
 
+    def test_caracteres_validos(self):
+        self.assertRaises(ValueError, romano_a_entero, "A")
+        self.assertRaises(ValueError, romano_a_entero, "3")
+
+    def test_no_restas_consecutivas(self):
+        self.assertRaises(ValueError, romano_a_entero, "IIV")
+        self.assertRaises(ValueError, romano_a_entero, "MXXC")
+
+        
 unittest.main()
