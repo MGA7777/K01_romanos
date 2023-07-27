@@ -1,5 +1,3 @@
-import re
-
 def convertir_a_romano(numero):
 
     if type(numero) != int:
@@ -28,6 +26,7 @@ num2 = int(input("Introduce el segundo número: "))
 num_rom_2 = (convertir_a_romano(num2))
 print ("El numero introducido equivale a ", num_rom_2, "en romano.")"""
 
+import re
 def romano_a_entero(romano):
 
     """digitos_romanos = ["I", "V", "X", "L", "C", "D", "M"]
@@ -43,28 +42,32 @@ def romano_a_entero(romano):
     }
 
     if not isinstance (romano, str):
-        return "Error: Tiene que ser un número romano en formato cadena de texto"
+        raise TypeError ("Error: Tiene que ser un número romano en formato cadena de texto")
 
     resultado = 0
     anterior = 0
+    # letra_igual = 0 Forma fácil de encontrar 3 letras seguidas. Irá con todo lo que esta entre 59-64
 
     for letra in romano:  
         if letra not in digitos_romanos:
-            return f"Error: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)"
-        #i = digitos_romanos.index(letra)
-        #resultado = resultado + valores [i]
-        #resultado = resultado + digitos_romanos[letra]
+            raise ValueError (f"Error: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)")
 
         patron = r"(.)\1{3,}"
         if re.search(patron, romano):
-            return "Error: Un número romano no puede contener 3 letras seguidas iguales ({patron})"
+            raise ValueError (f"Error: Un número romano no puede contener 3 letras seguidas iguales {letra}")
+        # if actual == anterior:
+        #     letra_igual +=1
+        # else:
+        #     letra_igual = 0
+        # if letra_igual == 3:
+        #     return "Error: Un número romano no puede contener 3 letras seguidas iguales {letra}"
 
         actual = digitos_romanos [letra]
         if anterior < actual:
-            # Si el numero se 
+            # Si el anterior es 2 unidades más pequeño, no se debe restar
             if anterior > 0 and len (str(actual)) - len (str(anterior)) > 1:
-                return f"ERROR: Resta no posible ({anterior} - {actual})"
-            #deshace la suma de la anterior condicion
+                raise ValueError (f"ERROR: Resta no posible ({anterior} - {actual})")
+            # Deshace la suma de la anterior condicion
             resultado = resultado - anterior
             resultado = resultado + (actual - anterior)
         else:
@@ -73,9 +76,20 @@ def romano_a_entero(romano):
         
     return resultado
 
-pruebas = ["A", "", 3, ["X", "X"], "I", "MCXXIII", "IV", "XIV", "XM", "MMMMX", "MCXXX"]
+pruebas = ["A", "", 3, ["X", "X"], "I", "MCXXIII", "IV", "XIV", "XM", "MMMMX", "MCXXX", "VX", "LC"]
 for valor in pruebas:
-    print(romano_a_entero(valor))
+    try:
+        print(romano_a_entero(valor))
+    except TypeError:
+        print("Uy!, el tipo no es válido")
+    except ValueError:
+        print("Va a ser que esa cadena no es un número romano")
+    except Exception as ex:
+        print("Hey!", ex)
+        # Le ayudamos a que no se rompa el programa con las excepciones y pueda continuar, simplemente haciendo un 
+        # try y except con las pruebas, si además le metemos en except (Exception as ex) que nos printe la excepcion , 
+        # nos dice el error por el que no funciona. Incluso podemos hacer una excepcion con un print diferente según 
+        # el tipo de error. 
 
 
 
