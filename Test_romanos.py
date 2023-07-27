@@ -11,8 +11,23 @@ class RomanosTest(unittest.TestCase):
         self.assertEqual(romano_a_entero("C"), 100)
         self.assertEqual(romano_a_entero("D"), 500)
         self.assertEqual(romano_a_entero("M"), 1000)
+
+    def test_numeros_basicos(self):
         self.assertEqual(romano_a_entero("IV"), 4)
         self.assertEqual(romano_a_entero("VI"), 6)
-        self.assertEqual(romano_a_entero("MMMM"), 4000)
+        self.assertEqual(romano_a_entero("MCXXIII"), 1123)
+        self.assertEqual(romano_a_entero("LVI"), 56)
+        self.assertEqual(romano_a_entero("XL"), 40)
+        self.assertEqual(romano_a_entero("CCV"), 205)
+    
+    def test_no_resta_mas_un_orden_magnitud(self):
+        self.assertRaises(ValueError, romano_a_entero, "XM")
+        self.assertRaises(ValueError, romano_a_entero, "IC")
+        self.assertRaises(ValueError, romano_a_entero, "XC")  # ESTO COMO NO ES UNA EXCEPCION FALLA
+    
+    def test_no_3letras_seguidas(self):
+        self.assertRaises(ValueError, romano_a_entero, "MMMM")
+        self.assertRaises(ValueError, romano_a_entero, "MIIII")
+        
 
 unittest.main()
