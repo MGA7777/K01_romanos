@@ -73,6 +73,9 @@ def romano_a_entero(romano):
             
             if anterior > 0 and actual > super_anterior > 0:
                 raise ValueError (f"Error: 2 restas consecutivas")
+            
+            if anterior == "V" or anterior == "D" or anterior == "L":
+                raise ValueError (f"Error: Los simbolos multiplos de 5 solo pueden sumar no restar")
             # Deshace la suma de la anterior condicion
             resultado = resultado - anterior
             resultado = resultado + (actual - anterior)

@@ -36,6 +36,15 @@ class RomanosTest(unittest.TestCase):
     def test_no_restas_consecutivas(self):
         self.assertRaises(ValueError, romano_a_entero, "IIV")
         self.assertRaises(ValueError, romano_a_entero, "MXXC")
+        self.assertRaises(ValueError, romano_a_entero, "IVX")
 
+    def test_no_resta_multiplos5(self):
+        self.assertRaises(ValueError, romano_a_entero, "VX")
+        self.assertRaises(ValueError, romano_a_entero, "VXX")
+        self.assertRaises(ValueError, romano_a_entero, "LC")
+        self.assertRaises(ValueError, romano_a_entero, "DM")
+    
+    def test_otros_casos(self):
+         self.assertRaises(ValueError, romano_a_entero, "XIXXIII")
         
 unittest.main()
