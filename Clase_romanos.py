@@ -81,11 +81,11 @@ class RomanNumber:
         return resultado
     
 
-def __str__(self):
-    return self.cadena
+    def __str__(self):
+        return f"El número romano {self.cadena} con valor {self.valor}"
 
-def __repr__(self):
-    return self.__str__()
+    def __repr__(self):
+        return self.__str__()
 
 
 # En una clase los datos se guardan en un atributo
