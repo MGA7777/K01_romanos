@@ -65,4 +65,9 @@ unittest.main()
 # Si además queremos que compare también con su número romano 
 #  def __eq__(self, otro):
         #return self.cadena == otro or self.valor == otro
+
+#     def __ne__(self, otro): # No igual
+        #return self.cadena != otro or self.valor != otro
+    # Esto no va a funcinar porque con OR Verdadero - Falso = Verdadero
+    
     
