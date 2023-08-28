@@ -87,8 +87,19 @@ class RomanNumber:
     def __repr__(self):
         return self.__str__()
     
-    def __eq__(self, otro):
-        return self.valor == otro.valor
+    def __eq__(self, otro):  #Igual
+        return self.cadena == otro or self.valor == otro
+    
+    def __ne__(self, otro): # No igual
+        if isinstance(otro, RomanNumber):
+            return self.valor != otro.valor
+        if isinstance(otro, int):
+            return self.valor != otro
+        if isinstance (otro, str):
+            return self.cadena != otro
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    
+
 
 
 
