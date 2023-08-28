@@ -92,12 +92,34 @@ class RomanNumber:
     
     def __ne__(self, otro): # No igual
         if isinstance(otro, RomanNumber):
+            print ("Es un Roman Number")
             return self.valor != otro.valor
         if isinstance(otro, int):
+            print ("Es un int")
             return self.valor != otro
         if isinstance (otro, str):
+            print ("Es un str")
             return self.cadena != otro
         raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    
+    def __lt__(self, otro): # Menor que
+        if isinstance(otro, RomanNumber):
+            return self.valor < otro.valor
+        if isinstance(otro, int):
+            return self.valor < otro
+        if isinstance (otro, str):
+            return self.cadena < otro
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    
+    def __gt__(self, otro): # Mayor que
+        if isinstance(otro, RomanNumber):
+            return self.valor > otro.valor
+        if isinstance(otro, int):
+            return self.valor > otro
+        if isinstance (otro, str):
+            return self.cadena > otro
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+
     
 
 
