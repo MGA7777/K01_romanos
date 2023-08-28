@@ -48,3 +48,21 @@ class RomanosTest(unittest.TestCase):
          self.assertRaises(ValueError, romano_a_entero, "XIXXIII")
         
 unittest.main()
+
+# Si le decimos
+# a = RomanNumber (4)
+# b = RomanNumber (4)
+# a == b
+# Nos dirá que FALSE porque son 2 objetos diferentes.
+# ¿Cómo podemos comparar 2 objetos
+
+# def __eq__(self, otro)
+
+# Si queremos comparar ahora con su número
+#  def __eq__(self, otro):
+        #return self.valor == otro
+
+# Si además queremos que compare también con su número romano 
+#  def __eq__(self, otro):
+        #return self.cadena == otro or self.valor == otro
+    
