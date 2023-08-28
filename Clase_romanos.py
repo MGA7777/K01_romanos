@@ -119,6 +119,81 @@ class RomanNumber:
         if isinstance (otro, str):
             return self.cadena > otro
         raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    
+    def __add__(self, otro): # SUMA
+        if isinstance(otro, RomanNumber):
+            return self.valor + otro.valor
+        if isinstance(otro, int):
+            return self.valor + otro
+        if isinstance (otro, str):
+            return self.valor + RomanNumber(otro).valor
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    # Esto podría sumar perfectamente a + 56, pero no 56 + a, para que no tenga problema
+    # Habría qu añadir una r delante
+    def __radd__(self, otro):
+        return self.__add__(otro)
+    
+    def __sub__(self, otro):  # RESTA
+        if isinstance(otro, RomanNumber):
+            return self.valor - otro.valor
+        if isinstance(otro, int):
+            return self.valor - otro
+        if isinstance (otro, str):
+            return self.valor - RomanNumber(otro).valor
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    def __rsub__(self, otro):
+        if isinstance(otro, RomanNumber):
+            return otro.valor - self.valor
+        if isinstance(otro, int):
+            return otro - self.valor
+        if isinstance(otro, int):
+            return RomanNumber(otro).valor - self.valor
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    
+
+    def __add__(self, otro): # SUMA DEVOLVIENDO NÚMERO ROMANO
+        if isinstance(otro, RomanNumber):
+            return RomanNumber (self.valor + otro.valor)
+        if isinstance(otro, int):
+            return RomanNumber (self.valor + otro)
+        if isinstance (otro, str):
+            return (self + RomanNumber(otro))
+        raise ValueError("Solo puedo comparar numeros romanos, enteros o cadenas")
+    def __radd__(self, otro):
+        return self.__add__(otro)
+    
+    def __sub__(self, otro):  # RESTA DEVOLVIENDO NÚMERO ROMANO
+        resta = 0
+        if isinstance(otro, RomanNumber):
+            resta = self.valor - otro.valor
+        elif isinstance(otro, int):
+            resta = self.valor - otro
+        elif isinstance (otro, str):
+            resta self.valor - RomanNumber(otro).valor
+        else: 
+            raise ValueError("Solo se restar RomanNumber, int o str")
+        
+        if resta <=0:
+            raise ValueError("Un número romano no puede ser negativo, no puedo hacer la resta")
+        else:
+            return RomanNumber(resta)
+        
+    def __rsub__(self, otro):  # RESTA DEVOLVIENDO NÚMERO ROMANO
+        resta = 0
+        if isinstance(otro, RomanNumber):
+            resta = otro.valor - self.valor
+        elif isinstance(otro, int):
+            resta = otro - self.valor
+        elif isinstance (otro, str):
+            resta RomanNumber(otro).valor - self.valor
+        else: 
+            raise ValueError("Solo se restar RomanNumber, int o str")
+        
+        if resta <=0:
+            raise ValueError("Un número romano no puede ser negativo, no puedo hacer la resta")
+        else:
+            return RomanNumber(resta)
+
 
     
 
