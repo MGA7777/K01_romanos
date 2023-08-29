@@ -31,8 +31,8 @@ class RomanNumber:
         return resultado
     
 
-    def romano_a_entero(romano):
-
+    def romano_a_entero(self):
+        romano = self.cadena
         digitos_romanos = {
             "I": 1, 
             "V": 5, 
@@ -42,7 +42,6 @@ class RomanNumber:
             "D": 500,
             "M": 1000,
         }
-
         if not isinstance (romano, str):
             raise TypeError ("Error: Tiene que ser un número romano en formato cadena de texto")
 
@@ -81,8 +80,8 @@ class RomanNumber:
         return resultado
     
 
-    def __str__(self):
-        return f"El número romano {self.cadena} con valor {self.valor}"
+    def __str__(self): #
+        return self.cadena
 
     def __repr__(self):
         return self.__str__()
@@ -169,7 +168,7 @@ class RomanNumber:
         elif isinstance(otro, int):
             resta = self.valor - otro
         elif isinstance (otro, str):
-            resta self.valor - RomanNumber(otro).valor
+            resta = self.valor - RomanNumber(otro).valor
         else: 
             raise ValueError("Solo se restar RomanNumber, int o str")
         
@@ -185,7 +184,7 @@ class RomanNumber:
         elif isinstance(otro, int):
             resta = otro - self.valor
         elif isinstance (otro, str):
-            resta RomanNumber(otro).valor - self.valor
+            resta = RomanNumber(otro).valor - self.valor
         else: 
             raise ValueError("Solo se restar RomanNumber, int o str")
         

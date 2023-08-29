@@ -46,8 +46,14 @@ class RomanosTest(unittest.TestCase):
     
     def test_otros_casos(self):
          self.assertRaises(ValueError, romano_a_entero, "XIXXIII")
+
+    def test_eq(self):
+         self.assertEqual( ("a=IV", "b=IV"), True)
         
 unittest.main()
+
+
+
 
 # Si le decimos
 # a = RomanNumber (4)
